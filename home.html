@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+   <div class="topnav">
+  <a class="active" href="#home">Check-In</a>
+  <a href="#check-out">Check-out</a>
+  <a href="#host">Host-Registration</a>
+ 
+</div> 
+  <main id="main">
+    <form id="survey-form" action="post">
+      <div>
+        <label for="name-label">Name</label>
+      </div>
+      <input type="text" class="pad" id="name-label" placeholder="Please enter your name" required>
+      </div>
+      <div>
+        <label for="email-label">Email</label>
+      </div>
+      <input type="email" class="pad" id="email-label" placeholder="Please enter your email" required>
+
+      <div>
+        <label for="number-label">Age</label>
+      </div>
+      <input type="number" class="pad" id="number-label" placeholder="Age" min="1" max="100" required>
+      <div>
+        <label for="dropdown">Select your favorite breed</label>
+      </div>
+
+      <div>
+        <select id="dropdown" class="pad">
+  <option value="breed">Abyssinian</option>
+  <option value="breed">Bombay</option>
+  <option value="breed">Burmese</option>
+  <option value="breed">Bengal</option>
+  <option value="breed">British Longhair</option>
+  <option value="breed">Egyptian Mau</option>
+  <option value="breed">Maine Coon</option>
+  <option value="breed">Munchkin</option>
+  <option value="breed">Persian</option>
+  <option value="breed">Ragdoll</option>      
+</select>
+        <div>
+          <p id="recommend">Would you recommend this breed to a friend?</p>
+        </div>
+
+        <div>
+          <input type="radio" id="positive" name="positive" value="positive" checked>
+          <label for="positive"> Yes</label>
+        </div>
+
+        <div>
+          <input type="radio" id="negative" name="negative" value="negative">
+          <label for="negative">No</label>
+        </div>
+
+        <div>
+          <input type="radio" id="meh" name="meh" value="meh">
+          <label for="meh">Maybe</label>
+        </div>
+
+        <p>Any comments or advice for other cat owners</p>
+        <textarea cols=30 rows=5></textarea>
+        <div>
+          <button id="submit"> Submit </button>
+        </div>
+    </form>
+
+</body>
+</main>
+</html>
