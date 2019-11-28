@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<body>
+  
+  <div class="topnav">
+  <a class='active' href="#Check-In">Check-In</a>
+  <a href="#check-out">Check-out</a>
+  <a href="#host">Host-Registration</a>
+  </div> 
+
+  <main id="main">
+    <form id="survey-form" action = "{{ url_for('checkin') }}" method = "POST" >
+      <div>
+        <label for="name-label">Name</label>
+      </div>
+      <input type="text" class="pad" id="name-label" placeholder="Please enter your name" name = "name" required>
+      <div>
+        <label for="email-label">Email</label>
+      </div>
+      <input type="email" class="pad" id="email-label" placeholder="Please enter your email" name = "email" required>
+      <div>
+        <label for="number-label">Phone no.</label>
+      </div>
+      <input type="number" class="pad" id="number-label" placeholder="Phone Number" name = "phone" required> 
+      <div>
+        <label for="host-label">host</label>
+      </div>
+      <input type="text" class="pad" id="host-label" placeholder="Please enter your host" name = "host" required>
+      <div>
+      <button id="submit"> Submit </button>
+      </div>
+    </form>
+
+</body>
+</main>
+</html>

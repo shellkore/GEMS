@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+   <body>
+      <table border = 1>
+         <thead>
+            <td>Name</td>
+            <td>email</td>
+            <td>phone</td>
+            <td>Host</td>
+            <td>Check-In</td>
+            <td>Check-Out</td>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{row["name"]}}</td>
+               <td>{{row["email"]}}</td>
+               <td> {{row["phone"]}}</td>
+               <td>{{row["host"]}}</td>
+               <td>{{row["checkin"]}}</td>
+               <td>{{row["checkout"]}}</td>
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <a href = "/">Go back to home page</a>
+   </body>
+</html>
