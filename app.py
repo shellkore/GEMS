@@ -10,10 +10,12 @@ app = Flask(__name__)
 try:
 	with open('creds.json') as json_file:
 		mailID = json.load(json_file)
+
 except:
 	print("Since this is your first time. Please provide a admin Email and password")
 	email = input("Admin Email : ")
 	password = input("Admin Password : ")
+	mailID = {}
 	mailID['id'] = email
 	mailID['password'] = password
 

@@ -7,9 +7,9 @@
 <body>
   
   <div class="topnav">
-  <a href="#home">Check-In</a>
-  <a href="#check-out">Check-out</a>
-  <a class='active' href="#host">Host-Registration</a>
+  <a  href="{{ url_for('checkin') }}">Check-In</a>
+  <a href="{{ url_for('checkout') }}">Check-out</a>
+  <a class='active' href="{{ url_for('host') }}">Host-Registration</a>
   </div> 
 
   <main id="main">
