@@ -23,9 +23,6 @@ app.config['MAIL_USE_SSL'] = True
 mail=Mail(app)
 
 def sendMailToHost(name,email,phone,checkin,hostName):
-	print(hostName)
-	print(len(hostName))
-	print(type(hostName))
 	with sql.connect("database.db") as con:
 		cur=con.cursor()
 		cur.execute("select * from host where name=(?)",(hostName,))
@@ -39,6 +36,28 @@ def sendMailToHost(name,email,phone,checkin,hostName):
 	mailMsg.body = "Name : "+name+"\nEmail : "+email+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin
 	mail.send(mailMsg)
 	print("mail send to "+mailID['id'])
+
+def sendMailToVisitor(name,phone):
+	with sql.connect("database.db") as con:
+		cur=con.cursor()
+		cur.execute("select * from visitor where name=(?) and phone=(?)",(name,phone))
+		visitorDetail=cur.fetchall()
+		email = (visitorDetail[0][1])
+		hostName = visitorDetail[0][3]
+		checkin = visitorDetail[0][4]
+		checkout = visitorDetail[0][5]
+		cur.close()
+
+		cur=con.cursor()
+		cur.execute("select * from host where name=(?)",(hostName,))
+		visitorDetail=cur.fetchall()
+		address = visitorDetail[0][3]
+		cur.close()
+
+	mailMsg = Message(name+" : Your last visit details", sender = "admin" , recipients = [email])
+	mailMsg.body = "Name : "+name+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin+"\nCheck-out at : "+checkout+"\nHost-Name : "+hostName+"\nAddress visited : "+address +"\nThanks for visiting!!!"
+	mail.send(mailMsg)
+	print("mail sent")
 
 @app.route('/')
 def home():
@@ -64,7 +83,7 @@ def host():
 			msg = "Record successfully added in host"
 		return render_template("result.html",msg = msg)
 
-@app.route('/visitor',methods = ['POST', 'GET'])
+@app.route('/chekin',methods = ['POST', 'GET'])
 def checkin():
 	if request.method == 'GET':
 		return render_template('checkin.html')
@@ -88,6 +107,26 @@ def checkin():
 		sendMailToHost(name,email,phone,checkin,host)
 
 		return render_template("result.html",msg = msg)
+
+@app.route('/checkout',methods = ['POST', 'GET'])
+def checkout():
+	if request.method == 'GET':
+		return render_template('checkout.html')
+	else:
+		name = request.form['name']
+		phone = request.form['phone']
+		checkout = time.ctime(int(time.time()))
+
+		with sql.connect("database.db") as con:
+			cur=con.cursor()
+			cur.execute('''UPDATE visitor set checkout = (?) where name = (?) and phone=(?)''',(checkout,name,phone))
+			con.commit()
+			cur.close()
+
+		sendMailToVisitor(name,phone)
+		msg = "Visitor checkout successful"
+
+	return render_template("result.html",msg = msg)
 
 @app.route('/viewH')
 def viewH():
