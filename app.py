@@ -4,6 +4,7 @@ import time
 from flask_mail import Mail, Message
 import json
 import os
+import smsSender
 
 app = Flask(__name__)
 
@@ -31,6 +32,16 @@ app.config['MAIL_USE_SSL'] = True
 
 mail=Mail(app)
 
+def sendSmsToHost(name,email,phone,checkin,hostName):
+	with sql.connect("database.db") as con:
+		cur=con.cursor()
+		cur.execute("select * from host where name=(?)",(hostName,))
+		hostDetail=cur.fetchall();
+		hostPhone = (hostDetail[0][2])
+		cur.close()
+
+		smsSender.send_sms_to_host(name,email,phone,checkin,hostPhone,hostName)
+
 def sendMailToHost(name,email,phone,checkin,hostName):
 	with sql.connect("database.db") as con:
 		cur=con.cursor()
@@ -42,7 +53,7 @@ def sendMailToHost(name,email,phone,checkin,hostName):
 	print(hostEmail)
 
 	mailMsg = Message(name+" info recieved", sender = "admin" , recipients = [hostEmail])
-	mailMsg.body = "Name : "+name+"\nEmail : "+email+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin
+	mailMsg.body = "Dear "+hostName+"you have following visitor: \nName : "+name+"\nEmail : "+email+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin
 	mail.send(mailMsg)
 	print("mail send to "+mailID['id'])
 
@@ -111,6 +122,7 @@ def checkin():
 			msg = "Record successfully added in visitor"
 
 		sendMailToHost(name,email,phone,checkin,host)
+		sendSmsToHost(name,email,phone,checkin,host)
 
 		return render_template("result.html",msg = msg)
 
