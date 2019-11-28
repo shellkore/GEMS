@@ -80,7 +80,7 @@ def sendMailToVisitor(name,phone):
 	print("mail sent")
  
 
-@app.route('/host',methods = ['POST', 'GET'])
+@app.route('/',methods = ['POST', 'GET'])
 def host():
 	if request.method == 'GET':
 		return render_template('host.html')
@@ -97,10 +97,10 @@ def host():
 
 			con.commit()
 			cur.close()
-			msg = "Record successfully added in host"
+			msg = "Congrats!! You are registered as a host"
 		return render_template("result.html",msg = msg)
 
-@app.route('/',methods = ['POST', 'GET'])
+@app.route('/checkin',methods = ['POST', 'GET'])
 def checkin():
 	if request.method == 'GET':
 		return render_template('checkin.html')
@@ -119,7 +119,7 @@ def checkin():
 
 			con.commit()
 			cur.close()
-			msg = "Record successfully added in visitor"
+			msg = "Check-In successful! You may proceed!"
 
 		sendMailToHost(name,email,phone,checkin,host)
 		sendSmsToHost(name,email,phone,checkin,host)
@@ -142,7 +142,7 @@ def checkout():
 			cur.close()
 
 		sendMailToVisitor(name,phone)
-		msg = "Visitor checkout successful"
+		msg = "Thanks for Visiting! Have a nice day :)"
 
 	return render_template("result.html",msg = msg)
 

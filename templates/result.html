@@ -1,7 +1,12 @@
 <!doctype html>
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
    <body>
-      result of addition : {{ msg }}
-      <h2><a href = "\">go back to home page</a></h2>
+   	<main id="main">
+      {{ msg }}
+      <h2><a href = "/"><button>Home Page</button></a></h2>
+    <main>
    </body>
 </html>
