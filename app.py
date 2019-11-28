@@ -16,12 +16,9 @@ except:
 	password = input("Admin Password : ")
 	mailID['id'] = email
 	mailID['password'] = password
-	
+
 	with open('creds.json','w') as json_file:
 		json.dump(mailID,json_file)
-
-print(mailID['id'])
-print(mailID['password'])
 
 app.config['MAIL_SERVER']='smtp.gmail.com'                
 app.config['MAIL_PORT'] = 465
@@ -68,10 +65,7 @@ def sendMailToVisitor(name,phone):
 	mailMsg.body = "Name : "+name+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin+"\nCheck-out at : "+checkout+"\nHost-Name : "+hostName+"\nAddress visited : "+address +"\nThanks for visiting!!!"
 	mail.send(mailMsg)
 	print("mail sent")
-
-@app.route('/')
-def home():
-   return ('Success') 
+ 
 
 @app.route('/host',methods = ['POST', 'GET'])
 def host():
@@ -93,7 +87,7 @@ def host():
 			msg = "Record successfully added in host"
 		return render_template("result.html",msg = msg)
 
-@app.route('/chekin',methods = ['POST', 'GET'])
+@app.route('/',methods = ['POST', 'GET'])
 def checkin():
 	if request.method == 'GET':
 		return render_template('checkin.html')
