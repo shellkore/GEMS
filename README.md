@@ -3,7 +3,8 @@
 ## DESCRIPTION
 This is an entry management software built on flask. This is made for the purpose of innovacer summergeeks-SDE.
 
-Live Link deployed on heroku [here](https://ems-shellkore.herokuapp.com_)
+Live Link deployed on heroku [here](https://ems-shellkore.herokuapp.com)
+
 ## FEATURES
 + Host can register itself with name, mail, phone no. and address.
 + Visitor have two options - check-in and check-out
@@ -12,6 +13,7 @@ Live Link deployed on heroku [here](https://ems-shellkore.herokuapp.com_)
 + As soon as visitor check-in, a mail to the corresponding host is sent of the arrival.
 + On leaving the place, visitor do check-out. Details to be provided are name and phone no. only.
 + As soon as visitor do check-out, a mail to the visitor is sent of all his details along with the address of host he/she visited.
++ You can view Database (hosts and visitors) by '/viewH' and 'viewV' links.
 
 ## REQUIREMENTS
 install all requirements from requirement.txt
@@ -31,4 +33,4 @@ Make sure you have all the requirements installed mentioned above.
 + To view all your visitors
 	`127.0.0.1:5000/viewV`
 
->This is made for the purpose of internship selection task only.
+>This is made for the purpose of internship selection task only. Please don't create issues and send PRs. Thanks.
