@@ -13,7 +13,7 @@ p {
 
 #main {
   text-align: center;
-  margin: 0px 200px;
+  margin: 5% 15%;
   padding: 2%;
   border-radius: 5%;
   filter: drop-shadow(0px 0px 15px #4444dd);
@@ -111,4 +111,3 @@ textarea {
   background-color: #4444dd;
   color: white;
 }
-

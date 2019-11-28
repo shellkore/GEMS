@@ -13,7 +13,7 @@ except:
 url = "https://www.fast2sms.com/dev/bulk"
 
 def send_sms_to_host(name,email,phone,checkin,hostPhone,hostName):
-	msg = "Dear "+hostName+"you have following visitor: \nName : "+name+"\nEmail : "+email+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin
+	msg = "Dear "+hostName+",\nYou have following visitor: \nName : "+name+"\nEmail : "+email+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin
 	payload = "sender_id=FSTSMS&message="+msg+"&language=english&route=p&numbers="+str(hostPhone)
 
 	headers = {

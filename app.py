@@ -53,7 +53,7 @@ def sendMailToHost(name,email,phone,checkin,hostName):
 	print(hostEmail)
 
 	mailMsg = Message(name+" info recieved", sender = "admin" , recipients = [hostEmail])
-	mailMsg.body = "Dear "+hostName+"you have following visitor: \nName : "+name+"\nEmail : "+email+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin
+	mailMsg.body = "Dear "+hostName+"\nyou have following visitor: \nName : "+name+"\nEmail : "+email+"\n Phone No. : "+str(phone)+"\nCheck-In at : "+checkin
 	mail.send(mailMsg)
 	print("mail send to "+mailID['id'])
 
