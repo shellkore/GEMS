@@ -1,5 +1,15 @@
 # entry-management-software
 
+## TABLE OF CONTENT
++ [DESCRIPTION](https://github.com/shellkore/entry-management-software#description)
++ [FEATURES](https://github.com/shellkore/entry-management-software#description)
++ [REQUIREMENTS](https://github.com/shellkore/entry-management-software#requirements)
++ [HOW TO RUN](https://github.com/shellkore/entry-management-software#how-to-run)
++ [WORKFLOW](https://github.com/shellkore/entry-management-software#workflow)
++ [APPROACH](https://github.com/shellkore/entry-management-software#approach)
++ [REPO-DESCRIPTION](https://github.com/shellkore/entry-management-software#repo-description)
+	
+
 ## DESCRIPTION
 This is an entry management software built on flask. This is made for the purpose of innovacer summergeeks-SDE.
 
@@ -24,6 +34,8 @@ install all requirements from requirement.txt
 
 Make sure you have all the requirements installed mentioned above.
 
++ run createDB.py to create database.
+  `python3 createDB.py`
 + run app.py
   `python3 app.py`
 + open browser and enter `127.0.0.1:5000`
@@ -65,5 +77,50 @@ Make sure you have all the requirements installed mentioned above.
 
 + Mail sent to the visitor about his visit
 ![visitor_mail](images/visitor_mail.png)
+
+## APPROACH
+
+1. **Front-End** made using HTML/CSS. These files are kept in templates folder for flask to read them. The forms made consist of corresponding field:
+	+ name : type="text"
+	+ E-Mail : type="email"
+	+ Phone Number : type="number" etc.
+	
+1. Database is designed in sqlite3. There are two tables.
+	+ Host : 
+		+ name TEXT,
+		+ email TEXT, 
+		+ phone INTEGER NOT NULL PRIMARY KEY,
+		+ address TEXT
+	+ Visitor :
+		+ name TEXT, 
+		+ email TEXT, 
+		+ phone INTEGER NOT NULL PRIMARY KEY, 
+		+ host TEXT,
+		+ checkin TEXT, 
+		+ checkout TEXT
+
+1. **Flask**: this front-end is connected with database with the help of Flask app created in python. The routes created in Flask are:
+	+ @app.route('/',methods = ['POST', 'GET']) : for landing on home-page which is checkin in our case.
+	+ @app.route('/host',methods = ['POST', 'GET']) : for host registration.
+	+ @app.route('/checkout',methods = ['POST', 'GET']) : gor check-out.
+	+ @app.route('/viewH') : to view all hosts
+	+ @app.route('/viewV') : to view all visitors
+	Also there are 3 functions:
+		+ sendSmsToHost(name,email,phone,checkin,hostName) : to send sms to host when visitor checks in.
+		+ sendMailToHost(name,email,phone,checkin,hostName) : to send mail to host when user checks in.
+		+ sendMailToVisitor(name,phone) : to mail visitor their detail when they do check-out.
+
+## REPO-DESCRIPTION
++ images : contains images for work-flow.
++ static/styles : contain CSS file for styling.
++ templates : contains all HTML files.
++ .gitignore : contains name of file which contains info which can't be exposed to public. eg: API authentication keys and password.
++ Procfile : contains server info. required for deploying on Heroku.
++ README.md : Contains documentation.
++ app.py : main file of the project. Contains flask app code in it.
++ createDB.py : this file is required to create DB in sqlite3 at the beginning.
++ database.db : contains Sqlite3 data. All information entered is saved in this file.
++ requirements.txt : requirements means all the libraries required for running our program.
++ smsSender.py : python file to send sms to host.
 
 >This is made for the purpose of internship selection task only. Please don't create issues and send PRs. Thanks.
