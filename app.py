@@ -3,12 +3,22 @@ import sqlite3 as sql
 import time
 from flask_mail import Mail, Message
 import json
+import os
 
 app = Flask(__name__)
 
-
-with open('creds.json') as json_file:
+try:
+	with open('creds.json') as json_file:
 		mailID = json.load(json_file)
+except:
+	print("Since this is your first time. Please provide a admin Email and password")
+	email = input("Admin Email : ")
+	password = input("Admin Password : ")
+	mailID['id'] = email
+	mailID['password'] = password
+	
+	with open('creds.json','w') as json_file:
+		json.dump(mailID,json_file)
 
 print(mailID['id'])
 print(mailID['password'])
