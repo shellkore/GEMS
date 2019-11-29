@@ -1,4 +1,4 @@
-# entry-management-software
+# GEMS - General-Entry-Management-Software
 
 ## TABLE OF CONTENT
 + [DESCRIPTION](https://github.com/shellkore/entry-management-software#description)
