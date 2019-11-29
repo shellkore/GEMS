@@ -146,8 +146,8 @@ def checkout():
 
 	return render_template("result.html",msg = msg)
 
-@app.route('/viewH')
-def viewH():
+@app.route('/allhosts')
+def allhosts():
    con = sql.connect("database.db")
    con.row_factory = sql.Row
    
@@ -158,8 +158,8 @@ def viewH():
 
    return render_template("viewH.html",rows = rows)
 
-@app.route('/viewV')
-def viewV():
+@app.route('/visitors')
+def visitors():
    con = sql.connect("database.db")
    con.row_factory = sql.Row
    

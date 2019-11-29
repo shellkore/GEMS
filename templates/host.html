@@ -10,6 +10,10 @@
   <a  href="{{ url_for('checkin') }}">Check-In</a>
   <a href="{{ url_for('checkout') }}">Check-out</a>
   <a class='active' href="{{ url_for('host') }}">Host-Registration</a>
+  <div class="topnav-right">
+  <a href="{{ url_for('allhosts') }}">Host List</a>
+  <a href="{{ url_for('visitors') }}">Visitor List</a>
+  </div>
   </div> 
 
   <main id="main">
@@ -34,7 +38,6 @@
       <button id="submit"> Submit </button>
       </div>
     </form>
-
+	</main>
 </body>
-</main>
 </html>

@@ -41,6 +41,7 @@ p {
 .topnav {
   background-color: #8d80da;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 /* Style the links inside the navigation bar */
@@ -63,6 +64,9 @@ p {
 .topnav a.active {
   background-color: #41e0ff;
   color: white;
+}
+.topnav-right {
+  float: right;
 }
 
 body {
