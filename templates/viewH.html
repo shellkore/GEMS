@@ -5,35 +5,34 @@
 </head>
    <body>
 
-  <div class="topnav">
+<div class="topnav">
   <a  href="{{ url_for('checkin') }}">Check-In</a>
   <a href="{{ url_for('checkout') }}">Check-out</a>
   <a href="{{ url_for('host') }}">Host-Registration</a>
   <div class="topnav-right">
-  <a class='active' href="{{ url_for('allhosts') }}">Host List</a>
-  <a href="{{ url_for('visitors') }}">Visitor List</a>
-  </div>
+     <a class='active' href="{{ url_for('allhosts') }}">Host List</a>
+     <a href="{{ url_for('visitors') }}">Visitor List</a>
+   </div>
 </div>
-      <main >
-      <table border = 1>
+      <table>
          <thead>
-            <td>Name</td>
-            <td>email</td>
-            <td>phone</td>
-            <td>address</td>
+            <tr>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Phone</th>
+               <th>Address</th>
+            </tr>
          </thead>
-         
+         <tbody>
          {% for row in rows %}
             <tr>
-               <td>{{row["name"]}}</td>
-               <td>{{row["email"]}}</td>
-               <td> {{row["phone"]}}</td>
-               <td>{{row["address"]}}</td>
+               <td data-column="Name">{{row["name"]}}</td>
+               <td data-column="Email">{{row["email"]}}</td>
+               <td data-column="Phone"> {{row["phone"]}}</td>
+               <td data-column="Address">{{row["address"]}}</td>
             </tr>
          {% endfor %}
+         </tbody>
       </table>
-      
-     </main>
    </body>
-
 </html>
