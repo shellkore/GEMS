@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<body> 
+  </div> 
+  <main id="main">
+    <form id="survey-form" action = "{{ url_for('host') }}" method = "GET" >
+      <div>
+        <label for="pin-label">Name</label>
+      </div>
+      <input type="password" class="pad" id="pin-label" placeholder="Please enter the Pin" name = "pin" required>
+      <div>
+      <button id="submit"> Submit </button>
+  	  </div>
+  </form>
+  </main>
+</body>
+</html> 

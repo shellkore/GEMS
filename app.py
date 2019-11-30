@@ -79,8 +79,24 @@ def sendMailToVisitor(name,phone):
 	mail.send(mailMsg)
 	print("mail sent")
  
+@app.route('/',methods = ['GET'])
+def home():
+	return render_template('home.html')
 
-@app.route('/',methods = ['POST', 'GET'])
+@app.route('/pin',methods= ['GET','POST'])
+def pin():
+	if request.method == 'GET':
+		return render_template('pin.html')
+	else:
+		pin = request.form['pin']
+		if(pin == '9876'):
+			return render_template('host.html')
+		else:
+			msg = 'Please Enter correct Pin'
+			return render_template("result.html",msg = msg)
+
+
+@app.route('/host',methods = ['POST', 'GET'])
 def host():
 	if request.method == 'GET':
 		return render_template('host.html')

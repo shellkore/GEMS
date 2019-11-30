@@ -7,6 +7,7 @@
 <body>
   
   <div class="topnav">
+  <a href="/">GEMS</a>
   <a  href="{{ url_for('checkin') }}">Check-In</a>
   <a href="{{ url_for('checkout') }}">Check-out</a>
   <a class='active' href="{{ url_for('host') }}">Host-Registration</a>
@@ -34,6 +35,10 @@
         <label for="address-label">address</label>
       </div>
       <input type="text" class="pad" id="address-label" placeholder="Please enter your Address" name = "address" required>
+      <div>
+        <label for="pin-label">Enter Pin</label>
+      </div>
+      <input type="password" class="pad" id="pin-label" placeholder="Please enter the PIN" name = "pin" required>
       <div>
       <button id="submit"> Submit </button>
       </div>
