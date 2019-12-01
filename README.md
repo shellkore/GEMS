@@ -61,20 +61,17 @@ Make sure you have all the requirements installed mentioned above.
 
 ![host](images/host-register.png)
 
-+ To check in by visitor
++ To check in by visitor. Host list is **automatically populated and searchable at the same time**.
 
 ![checkin](images/checkin.png)
-	Host list is automatically populated and searchable at the same time.
-
-+ Database after visiter do check-in
-
-![after-checkin](images/after_tester.png)
+	
 
 + Mail sent to Host
 
 ![mail-host](images/host-mail.png)
 
 + SMS sent to Host
+
 ![sms-host](images/sms.png)
 
 + To check-out by visitor
