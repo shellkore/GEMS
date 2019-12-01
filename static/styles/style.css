@@ -4,6 +4,9 @@ h1 {
   font-family: Georgia;
   text-shadow: 0px 0px 15px #4444dd;
 }
+img {
+  height: 20px;
+}
 p {
   text-align: center;
   color: white;
@@ -54,6 +57,12 @@ p {
   font-size: 17px;
 }
 
+
+.icon {
+  height: 16px;
+
+}
+
 /* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ddd;
@@ -69,6 +78,7 @@ p {
 .topnav-right {
   float: right;
 }
+
 
 body {
   background-color: rgba(135, 206, 250);
