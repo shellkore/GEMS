@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 </head>
 
@@ -32,10 +32,17 @@
       </div>
       <input type="text" class="pad" id="number-label" placeholder="Phone Number" name = "phone" pattern="[6789][0-9]{9}" required>
       <div>
-        <label for="host-label">host</label>
+        <label for="number-label">Enter Host</label>
       </div>
-      <input type="text" class="pad" id="host-label" placeholder="Please enter your host" name = "host" required>
       <div>
+       <input list="hosts" class="pad" placeholder = "click to get the list of host" name="host">
+          <datalist id="hosts">
+            {% for hostName in hostNames %}
+          <option value={{hostName[0]}}>
+            {% endfor %}
+          </datalist>
+        </div>
+        <div>
       <button id="submit"> Submit </button>
       </div>
     </form>

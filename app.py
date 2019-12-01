@@ -119,7 +119,11 @@ def host():
 @app.route('/checkin',methods = ['POST', 'GET'])
 def checkin():
 	if request.method == 'GET':
-		return render_template('checkin.html')
+		 con = sql.connect("database.db")
+		 cur=con.cursor()
+		 cur.execute("select name from host")
+		 hostNames = cur.fetchall()
+		 return render_template('checkin.html',hostNames = hostNames)
 	else:
 		name = request.form['name']
 		email = request.form['email']
@@ -171,7 +175,7 @@ def allhosts():
    cur.execute("select * from host")
    
    rows = cur.fetchall()
-
+   cur.close()
    return render_template("viewH.html",rows = rows)
 
 @app.route('/visitors')
