@@ -49,39 +49,48 @@ Make sure you have all the requirements installed mentioned above.
 
 ## WORK-FLOW
 
-+ HOME
++ Home
+
 ![home](images/home.png)
 
 + Click on Host to register host. You need to enter PIN.(Default pin is "9876")
+
 ![pin](images/pin.png)
 
 + To add a host
-![host](images/host.png)
+
+![host](images/host-register.png)
 
 + To check in by visitor
+
 ![checkin](images/checkin.png)
 	Host list is automatically populated and searchable at the same time.
 
 + Database after visiter do check-in
+
 ![after-checkin](images/after_tester.png)
 
 + Mail sent to Host
+
 ![mail-host](images/host-mail.png)
 
 + SMS sent to Host
-
 ![sms-host](images/sms.png)
 
 + To check-out by visitor
+
 ![check-out](images/checkout.png)
 
 + Mail sent to the visitor about his visit
+
 ![visitor-mail](images/visitor-mail.png)
 
 + Host List with details
+
 ![host-table](images/host-table.png)
 
 +Visitor List with details
+
 ![visitor-table](images/visitor-table.png)
 
 ## APPROACH
