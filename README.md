@@ -1,13 +1,13 @@
 # GEMS - General-Entry-Management-Software
 
 ## TABLE OF CONTENT
-+ [DESCRIPTION](https://github.com/shellkore/entry-management-software#description)
-+ [FEATURES](https://github.com/shellkore/entry-management-software#description)
-+ [REQUIREMENTS](https://github.com/shellkore/entry-management-software#requirements)
-+ [HOW TO RUN](https://github.com/shellkore/entry-management-software#how-to-run)
-+ [WORKFLOW](https://github.com/shellkore/entry-management-software#workflow)
-+ [APPROACH](https://github.com/shellkore/entry-management-software#approach)
-+ [REPO-DESCRIPTION](https://github.com/shellkore/entry-management-software#repo-description)
++ [Description](https://github.com/shellkore/entry-management-software#description)
++ [Features](https://github.com/shellkore/entry-management-software#description)
++ [Requirements](https://github.com/shellkore/entry-management-software#requirements)
++ [How to run](https://github.com/shellkore/entry-management-software#how-to-run)
++ [Workflow](https://github.com/shellkore/entry-management-software#workflow)
++ [Approach](https://github.com/shellkore/entry-management-software#approach)
++ [Repo-Description](https://github.com/shellkore/entry-management-software#repo-description)
 	
 
 ## DESCRIPTION
@@ -23,12 +23,18 @@ Live Link deployed on heroku [here](https://ems-shellkore.herokuapp.com)
 + As soon as visitor check-in, a **mail and a SMS to the corresponding host** is sent of the arrival.
 + On leaving the place, visitor do check-out. Details to be provided are name and phone no. only.
 + As soon as visitor do check-out, a **mail to the visitor** is sent of all his details along with the address of host he/she visited.
-+ You can view Database (hosts and visitors) by '/viewH' and 'viewV' links.
++ List of Hosts and Visitors with their corresponding info can be viewed any time.
 
 ## REQUIREMENTS
-install all requirements from requirement.txt
++ install all requirements from requirement.txt
 
-`pip3 install -r requirements.txt`
+	`pip3 install -r requirements.txt`
++ you have to setup Mailer and SMS sender. You will be asked to enter these details when you run app for first time.
+
+	+ Select one of your Gmail account as admin mail. [Allow less secure apps](https://devanswers.co/allow-less-secure-apps-access-gmail-account/) for this mail-id.
+
+	+ Create a account on fast2sms.com and get your API key from [here](https://www.fast2sms.com/dashboard/dev-api)
+
 
 ## HOW TO RUN
 
@@ -40,50 +46,58 @@ Make sure you have all the requirements installed mentioned above.
   `python3 app.py`
 + open browser and enter `127.0.0.1:5000`
 + Rest is self-explanatory
-+ To view all your hosts
-	`127.0.0.1:5000/viewH`
-+ To view all your visitors
-	`127.0.0.1:5000/viewV`
 
 ## WORK-FLOW
 
-+ Database can be viwed with the help of
-	+ Host `127.0.0.1:5000/viewH`
-	![host-db](images/host_shellkore.png)
-	+ Visitor '127.0.0.1:5000/viewV'
-	![visitor-db](images/before_tester.png)
++ HOME
+![home](images/home.png)
+
++ Click on Host to register host. You need to enter PIN.(Default pin is "9876")
+![pin](images/pin.png)
 
 + To add a host
 ![host](images/host.png)
 
 + To check in by visitor
 ![checkin](images/checkin.png)
+	Host list is automatically populated and searchable at the same time.
 
 + Database after visiter do check-in
 ![after-checkin](images/after_tester.png)
 
 + Mail sent to Host
-![mail-host](images/host_mail.png)
+![mail-host](images/host-mail.png)
 
 + SMS sent to Host
 
-![sms-host](https://user-images.githubusercontent.com/36515927/69811713-af6ca400-1214-11ea-9c4e-c12f59916d8b.png)
+![sms-host](images/sms.png)
 
 + To check-out by visitor
 ![check-out](images/checkout.png)
 
-+ Database after checkout
-![after-checkout](images/after_tester_checkout.png)
-
 + Mail sent to the visitor about his visit
-![visitor_mail](images/visitor_mail.png)
+![visitor-mail](images/visitor-mail.png)
+
++ Host List with details
+![host-table](images/host-table.png)
+
++Visitor List with details
+![visitor-table](images/visitor-table.png)
 
 ## APPROACH
 
 1. **Front-End** made using HTML/CSS. These files are kept in templates folder for flask to read them. The forms made consist of corresponding field:
-	+ name : type="text"
-	+ E-Mail : type="email"
-	+ Phone Number : type="number" etc.
+	+ Register a Host by entering following details.
+		+ First You would be asked to enter PIN.
+		+ Name : any type of text is allowed
+		+ Email : only valid emails can be entered.
+		+ Phone : Phone no. of 10 digits and only starting from 9,8,7,6 are allowed (from indian standards).
+		+ Address : Any text is allowed
+	+ Visitor Check-In
+		+ Name : any type of text is allowed
+		+ Email : only valid emails can be entered.
+		+ Phone : Phone no. of 10 digits and only starting from 9,8,7,6 are allowed (from indian standards).
+		+ Host : This list is **automatically populated by reading from database and is searchable**.
 	
 1. Database is designed in sqlite3. There are two tables.
 	+ Host : 
@@ -100,19 +114,22 @@ Make sure you have all the requirements installed mentioned above.
 		+ checkout TEXT
 
 1. **Flask**: this front-end is connected with database with the help of Flask app created in python. The routes created in Flask are:
-	+ @app.route('/',methods = ['POST', 'GET']) : for landing on home-page which is checkin in our case.
+	+ @app.route('/',methods = ['GET']) : for landing on home page.
+	+ @app.route('/pin',methods= ['GET','POST']) : for entering pin to procede to host-registration page.
 	+ @app.route('/host',methods = ['POST', 'GET']) : for host registration.
-	+ @app.route('/checkout',methods = ['POST', 'GET']) : gor check-out.
-	+ @app.route('/viewH') : to view all hosts
-	+ @app.route('/viewV') : to view all visitors
+	+ @app.route('/checkin',methods = ['POST', 'GET']) : for check-in.
+	+ @app.route('/checkout',methods = ['POST', 'GET']) : for check-out.
+	+ @app.route('/allhosts') : to view all hosts
+	+ @app.route('/visitors') : to view all visitors
 	Also there are 3 functions:
 		+ sendSmsToHost(name,email,phone,checkin,hostName) : to send sms to host when visitor checks in.
 		+ sendMailToHost(name,email,phone,checkin,hostName) : to send mail to host when user checks in.
 		+ sendMailToVisitor(name,phone) : to mail visitor their detail when they do check-out.
+		+ There is also a try-catch block which checks for the credential files. These files have password and API-key for sending mail and sms respectively. If there is no file(in case of using app for first time), you will be asked to enter details and the file would be created.
 
 ## REPO-DESCRIPTION
 + images : contains images for work-flow.
-+ static/styles : contain CSS file for styling.
++ static : contain CSS file for styling and image for icon.
 + templates : contains all HTML files.
 + .gitignore : contains name of file which contains info which can't be exposed to public. eg: API authentication keys and password.
 + Procfile : contains server info. required for deploying on Heroku.
