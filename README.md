@@ -1,13 +1,13 @@
 # GEMS - General-Entry-Management-Software
 
 ## TABLE OF CONTENT
-+ [Description](https://github.com/shellkore/entry-management-software#description)
-+ [Features](https://github.com/shellkore/entry-management-software#description)
-+ [Requirements](https://github.com/shellkore/entry-management-software#requirements)
-+ [How to run](https://github.com/shellkore/entry-management-software#how-to-run)
-+ [Workflow](https://github.com/shellkore/entry-management-software#workflow)
-+ [Approach](https://github.com/shellkore/entry-management-software#approach)
-+ [Repo-Description](https://github.com/shellkore/entry-management-software#repo-description)
++ [Description](#description)
++ [Features](#description)
++ [Requirements](#requirements)
++ [How to run](#how-to-run)
++ [Workflow](#workflow)
++ [Approach](#approach)
++ [Repo-Description](#repo-description)
 	
 
 ## DESCRIPTION
